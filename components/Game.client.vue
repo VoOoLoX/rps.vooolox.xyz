@@ -129,7 +129,7 @@ const makeMove = async (move: Move) => {
 };
 
 const copyGameUrl = () => {
-  navigator.clipboard.writeText(`http://localhost:1337/game/${gameId}`);
+  navigator.clipboard.writeText(`https://rps.vooolox.xyz/game/${gameId}`);
 };
 
 const moveToIcon = (move?: Move) => {
@@ -147,7 +147,7 @@ const moveToIcon = (move?: Move) => {
 <template>
   <main class="flex flex-col w-full h-full bg-#101010">
     <div class="flex flex-col gap-8 items-center justify-center h-50vh">
-      <pre v-if="!hasOpponent()" @click="copyGameUrl()" class="text-white bg-black p-2 rounded-4 cursor-copy">http://localhost:1337/game/{{ gameId }}</pre>
+      <pre v-if="!hasOpponent()" @click="copyGameUrl()" class="text-white bg-black p-2 rounded-4 cursor-copy">https://rps.vooolox.xyz/game/{{ gameId }}</pre>
       <h1 class="text-1.5rem text-white">You</h1>
       <img
         class="rounded-lg w-3rem h-3rem sm:w-4rem sm:h-4rem"

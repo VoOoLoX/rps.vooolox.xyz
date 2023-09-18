@@ -11,7 +11,7 @@ const signInWithOtp = async () => {
   const { data, error } = await supabase.auth.signInWithOtp({
     email: email.value,
     options: {
-      emailRedirectTo: "http://localhost:1337/confirm",
+      emailRedirectTo: "https://rps.vooolox.xyz/confirm",
     },
   });
 
@@ -27,29 +27,6 @@ const signInWithOtp = async () => {
     return;
   }
 };
-
-// const signInWithGoogle = async () => {
-//   const { error } = await supabase.auth.signInWithOAuth({
-//     provider: "google",
-//     options: {
-//       queryParams: {
-//         access_type: "offline",
-//         prompt: "consent",
-//       },
-//     },
-//   });
-//   if (error) console.log(error);
-// };
-
-// const signInWithAzure = async () => {
-//   const { error } = await supabase.auth.signInWithOAuth({
-//     provider: "azure",
-//     options: {
-//       scopes: "email",
-//     },
-//   });
-//   if (error) console.log(error);
-// };
 </script>
 <template>
   <div class="flex flex-col gap-8 items-center justify-center w-full h-screen bg-#101010">
