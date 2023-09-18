@@ -1,0 +1,22 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@iconify-json/noto": "^1.1.12",
+    "@nuxt/devtools": "latest",
+    "@nuxtjs/supabase": "^1.0.0-0",
+    "@unocss/nuxt": "^0.55.3",
+    "@unocss/preset-icons": "^0.55.7",
+    "nuxt": "^3.7.0"
+  },
+  "dependencies": {
+    "nanoid": "^4.0.2"
+  }
+}
