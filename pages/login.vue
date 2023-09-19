@@ -27,6 +27,53 @@ const signInWithOtp = async () => {
     return;
   }
 };
+
+const signInWithGoogle = async () => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      queryParams: {
+        access_type: "offline",
+        prompt: "consent",
+      },
+      redirectTo: "https://rps.vooolox.xyz",
+    },
+  });
+
+  if (error) {
+    message.value.success = false;
+    message.value.text = error.message;
+    return;
+  }
+
+  if (data) {
+    message.value.success = true;
+    message.value.text = "Successful login";
+    return;
+  }
+};
+
+const signInWithMicrosoft = async () => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "azure",
+    options: {
+      scopes: "email,offline_access",
+      redirectTo: "https://rps.vooolox.xyz",
+    },
+  });
+
+  if (error) {
+    message.value.success = false;
+    message.value.text = error.message;
+    return;
+  }
+
+  if (data) {
+    message.value.success = true;
+    message.value.text = "Successful login";
+    return;
+  }
+};
 </script>
 <template>
   <div class="flex flex-col gap-8 items-center justify-center w-full h-screen bg-#101010">
@@ -52,6 +99,15 @@ const signInWithOtp = async () => {
         {{ message.text }}
       </p>
     </div>
-    <button class="bg-dark text-white p-4 rounded-lg" @click="signInWithOtp">Continue with E-Mail</button>
+    <button class="bg-dark text-white p-4 rounded-lg hover:bg-#80808080 transition-all" @click="signInWithOtp()">Continue with E-mail</button>
+    <hr class="border-dark w-8rem" />
+    <div class="flex gap-4">
+      <button class="flex items-center gap-2 bg-dark text-white p-4 rounded-lg hover:bg-#80808080 transition-all" @click="signInWithGoogle()">
+        <p class="text-1.5rem i-logos-google-icon"></p>
+      </button>
+      <button class="flex items-center gap-2 bg-dark text-white p-4 rounded-lg hover:bg-#80808080 transition-all" @click="signInWithMicrosoft()">
+        <p class="text-1.5rem i-logos-microsoft-icon"></p>
+      </button>
+    </div>
   </div>
 </template>
