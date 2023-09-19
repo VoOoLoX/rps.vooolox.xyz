@@ -7,6 +7,9 @@ const message = ref({
   text: "",
 });
 
+const isValidEmail = (text: string) =>
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(text);
+
 const signInWithOtp = async () => {
   const { data, error } = await supabase.auth.signInWithOtp({
     email: email.value,
@@ -29,7 +32,7 @@ const signInWithOtp = async () => {
 };
 
 const signInWithGoogle = async () => {
-  const { data, error } = await supabase.auth.signInWithOAuth({
+  await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
       queryParams: {
@@ -39,40 +42,16 @@ const signInWithGoogle = async () => {
       redirectTo: "https://rps.vooolox.xyz/confirm",
     },
   });
-
-  if (error) {
-    message.value.success = false;
-    message.value.text = error.message;
-    return;
-  }
-
-  if (data) {
-    message.value.success = true;
-    message.value.text = "Successful login";
-    return;
-  }
 };
 
 const signInWithMicrosoft = async () => {
-  const { data, error } = await supabase.auth.signInWithOAuth({
+  await supabase.auth.signInWithOAuth({
     provider: "azure",
     options: {
       scopes: "email,offline_access",
       redirectTo: "https://rps.vooolox.xyz/confirm",
     },
   });
-
-  if (error) {
-    message.value.success = false;
-    message.value.text = error.message;
-    return;
-  }
-
-  if (data) {
-    message.value.success = true;
-    message.value.text = "Successful login";
-    return;
-  }
 };
 </script>
 <template>
@@ -99,7 +78,13 @@ const signInWithMicrosoft = async () => {
         {{ message.text }}
       </p>
     </div>
-    <button class="bg-dark text-white p-4 rounded-lg hover:bg-#80808080 transition-all" @click="signInWithOtp()">Continue with E-mail</button>
+    <button
+      :disabled="!isValidEmail(email)"
+      class="bg-dark text-white p-4 rounded-lg hover:bg-#80808080 transition-all disabled:pointer-events-none disabled:bg-#0f0f0f"
+      @click="signInWithOtp()"
+    >
+      Continue with E-mail
+    </button>
     <hr class="border-dark w-8rem" />
     <div class="flex gap-4">
       <button class="flex items-center gap-2 bg-dark text-white p-4 rounded-lg hover:bg-#80808080 transition-all" @click="signInWithGoogle()">

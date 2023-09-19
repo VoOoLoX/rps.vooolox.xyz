@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const { gameId }: { gameId?: string } = useRoute().params;
+</script>
+
 <template>
-  <Game :gameId="$route.params.gameId"></Game>
+  <Game :gameId="gameId"></Game>
 </template>

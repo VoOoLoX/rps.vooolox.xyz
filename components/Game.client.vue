@@ -1,8 +1,4 @@
 <script setup lang="ts">
-definePageMeta({
-  middleware: ["auth"],
-});
-
 import { Database } from "../types/supabase";
 import { REALTIME_LISTEN_TYPES, REALTIME_PRESENCE_LISTEN_EVENTS, REALTIME_SUBSCRIBE_STATES, RealtimeChannel } from "@supabase/supabase-js";
 import { nanoid } from "nanoid";
