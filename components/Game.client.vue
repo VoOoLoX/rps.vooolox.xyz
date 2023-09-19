@@ -143,10 +143,12 @@ const moveToIcon = (move?: Move) => {
 </script>
 
 <template>
-  <main class="flex flex-col w-full h-full bg-#101010">
+  <main class="flex flex-col w-full h-full dark:bg-#101010">
     <div class="flex flex-col gap-8 items-center justify-center h-50vh">
-      <pre v-if="!hasOpponent()" @click="copyGameUrl()" class="text-0.5rem sm:text-1rem text-white bg-black p-2 rounded-4 cursor-copy">{{ gameUrl }}</pre>
-      <h1 class="text-1.5rem text-white">You</h1>
+      <pre v-if="!hasOpponent()" @click="copyGameUrl()" class="text-0.5rem sm:text-1rem dark:text-white bg-light dark:bg-black p-2 rounded-4 cursor-copy">{{
+        gameUrl
+      }}</pre>
+      <h1 class="text-1.5rem dark:text-white">You</h1>
       <img
         class="rounded-lg w-3rem h-3rem sm:w-4rem sm:h-4rem"
         :src="'https://api.dicebear.com/7.x/thumbs/svg?size=96&seed=' + user.id"
@@ -179,9 +181,9 @@ const moveToIcon = (move?: Move) => {
           <p class="transition-all group-hover:scale-125 i-noto-scissors"></p>
         </button>
       </div>
-      <h2 v-if="myScore() !== undefined" class="text-2rem sm:text-3rem text-white">{{ myScore() }}</h2>
+      <h2 v-if="myScore() !== undefined" class="text-2rem sm:text-3rem dark:text-white">{{ myScore() }}</h2>
     </div>
-    <div class="absolute top-50% h-3px w-full bg-dark"></div>
+    <hr class="absolute top-50% h-3px w-full dark:border-dark" />
     <div class="flex flex-col-reverse gap-8 items-center justify-center h-50vh">
       <div v-if="opponent()" class="flex flex-col-reverse gap-8 items-center justify-center">
         <!-- <h1 class="text-1.5rem text-white">Opponent</h1> -->
@@ -204,7 +206,7 @@ const moveToIcon = (move?: Move) => {
       <div v-else>
         <p class="text-3rem sm:text-5rem i-noto-one-oclock animate-pulse animate-count-infinite animate-duration-1s"></p>
       </div>
-      <h2 v-if="opponentScore() !== undefined" class="text-2rem sm:text-3rem text-white">{{ opponentScore() }}</h2>
+      <h2 v-if="opponentScore() !== undefined" class="text-2rem sm:text-3rem dark:text-white">{{ opponentScore() }}</h2>
     </div>
   </main>
 </template>

@@ -55,16 +55,16 @@ const signInWithMicrosoft = async () => {
 };
 </script>
 <template>
-  <div class="flex flex-col gap-8 items-center justify-center w-full h-screen bg-#101010">
-    <h1 class="text-3xl text-white text-center">
+  <div class="flex flex-col gap-8 items-center justify-center w-full h-screen dark:bg-#101010">
+    <h1 class="text-3xl dark:text-white text-center">
       Welcome <br />
       to <br />
       Rock Paper Scissors
     </h1>
     <div class="flex flex-col gap-1 w-250px">
-      <label for="email" class="text-white text-xs pl-1">E-mail:</label>
+      <label for="email" class="dark:text-white text-xs pl-1">E-mail:</label>
       <input
-        class="outline-none bg-dark text-white p-2 rounded-lg"
+        class="outline-none dark:bg-dark bg-light dark:text-white p-2 rounded-lg"
         v-model="email"
         type="email"
         placeholder="example@example.com"
@@ -80,17 +80,17 @@ const signInWithMicrosoft = async () => {
     </div>
     <button
       :disabled="!isValidEmail(email)"
-      class="bg-dark text-white p-4 rounded-lg hover:bg-#80808080 transition-all disabled:pointer-events-none disabled:bg-#0f0f0f"
+      class="dark:bg-dark dark:text-white p-4 rounded-lg dark:hover:bg-#80808080 transition-all disabled:pointer-events-none dark:disabled:bg-#0f0f0f"
       @click="signInWithOtp()"
     >
       Continue with E-mail
     </button>
-    <hr class="border-dark w-8rem" />
+    <hr class="dark:border-dark w-8rem" />
     <div class="flex gap-4">
-      <button class="flex items-center gap-2 bg-dark text-white p-4 rounded-lg hover:bg-#80808080 transition-all" @click="signInWithGoogle()">
+      <button class="flex items-center gap-2 dark:bg-dark dark:text-white p-4 rounded-lg hover:bg-#80808080 transition-all" @click="signInWithGoogle()">
         <p class="text-1.5rem i-logos-google-icon"></p>
       </button>
-      <button class="flex items-center gap-2 bg-dark text-white p-4 rounded-lg hover:bg-#80808080 transition-all" @click="signInWithMicrosoft()">
+      <button class="flex items-center gap-2 dark:bg-dark dark:text-white p-4 rounded-lg hover:bg-#80808080 transition-all" @click="signInWithMicrosoft()">
         <p class="text-1.5rem i-logos-microsoft-icon"></p>
       </button>
     </div>
