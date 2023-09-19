@@ -36,7 +36,7 @@ const signInWithGoogle = async () => {
         access_type: "offline",
         prompt: "consent",
       },
-      redirectTo: "https://rps.vooolox.xyz",
+      redirectTo: "https://rps.vooolox.xyz/confirm",
     },
   });
 
@@ -58,7 +58,7 @@ const signInWithMicrosoft = async () => {
     provider: "azure",
     options: {
       scopes: "email,offline_access",
-      redirectTo: "https://rps.vooolox.xyz",
+      redirectTo: "https://rps.vooolox.xyz/confirm",
     },
   });
 
