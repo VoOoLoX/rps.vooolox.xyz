@@ -1,63 +1,34 @@
-# Nuxt 3 Minimal Starter
+<h1 align='center'>Rock Paper Scissors</h1>
+<p align='center'><b>Built with</b></p>
+<p align='center'>
+  <img alt="Nuxt 3" src="https://github.com/VoOoLoX/rps.vooolox.xyz/assets/5671173/6191d883-a983-4438-b0d5-7a4b64aba934" height="32">
+  <img alt="Supabase" src="https://github.com/VoOoLoX/rps.vooolox.xyz/assets/5671173/cab11677-7264-4819-a56a-174ca7de27c8" height="32">
+  <img alt="UnoCSS" src="https://github.com/VoOoLoX/rps.vooolox.xyz/assets/5671173/a5bea0d2-60d5-469c-8756-00a4ebe37ec9" height="32"> 
+</p>
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+![image](https://github.com/VoOoLoX/rps.vooolox.xyz/assets/5671173/81d08987-c5c8-4ea2-91f1-2dfe53f1c29a)
 
-## Setup
+## Local development
 
-Make sure to install the dependencies:
-
+- Install dependencies
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
 ```
 
-## Development Server
+- Set environment variables
+  
+In your `.env` file define following variables:
+`SUPABASE_URL`
+`SUPABASE_KEY`
+`NUXT_MIXPANEL_TOKEN`
 
-Start the development server on `http://localhost:3000`:
+```env
+SUPABASE_URL='{YOUR SUPABASE URL}'
+SUPABASE_KEY='{YOUR SUPABASE KEY}'
+NUXT_MIXPANEL_TOKEN='{YOUR MIXPANEL TOKEN}'
+```
 
+- Start development server
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
