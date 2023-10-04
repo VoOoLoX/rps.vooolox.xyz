@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import mixpanel from "mixpanel-browser";
+
 const supabase = useSupabaseClient();
 const email = ref("");
 
@@ -21,18 +23,20 @@ const signInWithOtp = async () => {
   if (error) {
     message.value.success = false;
     message.value.text = error.message;
+    mixpanel.track("Error sending email", { error });
     return;
   }
 
   if (data) {
     message.value.success = true;
     message.value.text = "E-mail successfully sent";
+    mixpanel.track("Email sent", { email: email.value });
     return;
   }
 };
 
 const signInWithGoogle = async () => {
-  await supabase.auth.signInWithOAuth({
+  const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
       queryParams: {
@@ -42,16 +46,36 @@ const signInWithGoogle = async () => {
       redirectTo: "https://rps.vooolox.xyz/confirm",
     },
   });
+
+  if (error) {
+    mixpanel.track("Google signin error", { error });
+    return;
+  }
+
+  if (data) {
+    mixpanel.track("Google signin");
+    return;
+  }
 };
 
 const signInWithMicrosoft = async () => {
-  await supabase.auth.signInWithOAuth({
+  const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "azure",
     options: {
       scopes: "email,offline_access",
       redirectTo: "https://rps.vooolox.xyz/confirm",
     },
   });
+
+  if (error) {
+    mixpanel.track("Microsoft signin error", { error });
+    return;
+  }
+
+  if (data) {
+    mixpanel.track("Microsoft signin");
+    return;
+  }
 };
 </script>
 <template>

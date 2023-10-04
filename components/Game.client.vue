@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import mixpanel from "mixpanel-browser";
 import { Database } from "../types/supabase";
 import { REALTIME_LISTEN_TYPES, REALTIME_PRESENCE_LISTEN_EVENTS, REALTIME_SUBSCRIBE_STATES, RealtimeChannel } from "@supabase/supabase-js";
 import { nanoid } from "nanoid";
@@ -57,6 +58,7 @@ createNewGameOrJoinExisting(gameChannel).subscribe(async (status: `${REALTIME_SU
   if (status === REALTIME_SUBSCRIBE_STATES.SUBSCRIBED) {
     const { id } = user.value;
     await gameChannel.track({ id });
+    mixpanel.track("Game joined", { user: id, gameId });
   }
 });
 
@@ -122,12 +124,15 @@ const makeMove = async (move: Move) => {
     console.log(error);
     return;
   }
+
+  mixpanel.track("Move", { move, gameId, user: myself()?.id });
 };
 
 const gameUrl = `https://rps.vooolox.xyz/game/${gameId}`;
 
 const copyGameUrl = () => {
   navigator.clipboard.writeText(gameUrl);
+  mixpanel.track("URL copied", { gameId });
 };
 
 const moveToIcon = (move?: Move) => {
