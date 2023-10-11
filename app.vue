@@ -2,6 +2,10 @@
 import "@unocss/reset/tailwind-compat.css";
 import mixpanel from "mixpanel-browser";
 
+useHead({
+  title: "Rock Paper Scissors",
+});
+
 const { mixpanelToken } = useRuntimeConfig().public;
 
 mixpanel.init(mixpanelToken, {
